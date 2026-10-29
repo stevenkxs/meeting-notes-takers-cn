@@ -1,0 +1,4 @@
+# Never commit recordings, transcripts, or meeting notes.
+notes/
+__pycache__/
+*.pyc
