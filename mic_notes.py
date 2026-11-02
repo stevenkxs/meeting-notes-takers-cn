@@ -4,14 +4,16 @@ labelled, timestamped transcripts to a markdown file.
 Lines are tagged "Me" (microphone) or "Them" (what plays through your speakers/headset,
 e.g. the other side of a Teams or Chime call).
 
-Usage:  python mic_notes.py [--model base] [--chunk 30] [--language zh] [--no-speaker] [--out notes/<timestamp>.md]
+Usage:  python mic_notes.py [--model base] [--chunk 30] [--language zh] [--no-speaker] [--save-audio] [--out notes/<timestamp>.md]
 Stop with Ctrl+C, or by creating notes/.stop. Audio stays local (Whisper runs on this machine).
 Tip: use a headset. With open speakers the mic also hears the speakers and lines get duplicated.
 """
 import argparse
+import json
 import queue
 import sys
 import time
+import wave
 from datetime import datetime
 from pathlib import Path
 
@@ -32,6 +34,8 @@ p.add_argument("--chunk", type=int, default=30, help="seconds of audio per trans
 p.add_argument("--out", default=f"notes/{datetime.now():%Y-%m-%d_%H%M}.md")
 p.add_argument("--language", default=None, help="e.g. en, zh; default auto-detects")
 p.add_argument("--no-speaker", action="store_true", help="record the microphone only")
+p.add_argument("--save-audio", action="store_true",
+               help="also save notes/audio/<name>_me.wav and _them.wav for cleanup_turbo.py")
 args = p.parse_args()
 
 out = Path(args.out)
@@ -55,8 +59,32 @@ def to_16k_mono(x: np.ndarray, rate: int) -> np.ndarray:
     return np.interp(np.linspace(0, len(mono) - 1, n), np.arange(len(mono)), mono).astype(np.float32)
 
 
+class Wav:
+    """Append-only 16 kHz mono WAV kept aligned to wall-clock time.
+
+    Loopback sends nothing while the speaker is silent, so gaps are padded with zeros.
+    Padding uses each chunk's capture time (not the time it is dequeued), so a slow
+    transcription never shifts the audio.
+    """
+
+    def __init__(self, path):
+        self.w = wave.open(str(path), "wb")
+        self.w.setnchannels(1)
+        self.w.setsampwidth(2)
+        self.w.setframerate(RATE)
+        self.t0, self.n = time.time(), 0
+
+    def add(self, chunk, ts):
+        gap = int((ts - self.t0) * RATE) - self.n - len(chunk)
+        if gap > RATE // 2:
+            self.w.writeframes(np.zeros(gap, dtype=np.int16).tobytes())
+            self.n += gap
+        self.w.writeframes((np.clip(chunk, -1, 1) * 32767).astype(np.int16).tobytes())
+        self.n += len(chunk)
+
+
 def on_mic(indata, frames, t, status):
-    audio_q.put(("Me", indata[:, 0].copy()))
+    audio_q.put(("Me", indata[:, 0].copy(), time.time()))
 
 
 # --- speaker loopback (WASAPI) ---
@@ -70,7 +98,7 @@ if not args.no_speaker:
 
         def on_loop(in_data, frame_count, time_info, status):
             x = np.frombuffer(in_data, dtype=np.float32).reshape(-1, ch)
-            audio_q.put(("Them", to_16k_mono(x, rate)))
+            audio_q.put(("Them", to_16k_mono(x, rate), time.time()))
             return (None, pyaudio.paContinue)
 
         loop_stream = pa.open(format=pyaudio.paFloat32, channels=ch, rate=rate, input=True,
@@ -83,6 +111,26 @@ if not args.no_speaker:
 
 bufs = {"Me": [], "Them": []}
 started = {"Me": time.time(), "Them": time.time()}
+
+wavs = {}
+if args.save_audio:
+    adir = out.parent / "audio"
+    adir.mkdir(exist_ok=True)
+    wavs["Me"] = Wav(adir / f"{out.stem}_me.wav")
+    if loop_stream:
+        wavs["Them"] = Wav(adir / f"{out.stem}_them.wav")
+    (adir / f"{out.stem}.json").write_text(
+        json.dumps({"start": datetime.now().isoformat(timespec="seconds"), "language": args.language}),
+        encoding="utf-8")
+    print(f"Saving audio -> {adir}")
+
+
+def take(item):
+    """Buffer one queued chunk for live transcription and, if enabled, write it to its WAV."""
+    label, chunk, ts = item
+    bufs[label].append(chunk)
+    if label in wavs:
+        wavs[label].add(chunk, ts)
 
 
 def flush(label):
@@ -114,8 +162,7 @@ try:
                 STOP.unlink()
                 raise KeyboardInterrupt
             try:
-                label, chunk = audio_q.get(timeout=1)
-                bufs[label].append(chunk)
+                take(audio_q.get(timeout=1))
             except queue.Empty:
                 pass
             # Loopback sends nothing while the speaker is silent, so flush on wall-clock time, not sample count.
@@ -123,9 +170,13 @@ try:
                 if time.time() - started[label] >= args.chunk:
                     flush(label)  # ponytail: blocks while transcribing; queue absorbs audio, fine unless model is slower than real time
 except KeyboardInterrupt:
+    while not audio_q.empty():  # audio captured while the last chunk was transcribing
+        take(audio_q.get_nowait())
     flush_all()
     print(f"\nSaved: {out}")
 finally:
+    for w in wavs.values():
+        w.w.close()
     if loop_stream:
         loop_stream.stop_stream()
         loop_stream.close()
