@@ -2,3 +2,5 @@
 notes/
 __pycache__/
 *.pyc
+audio/
+_root-backup/

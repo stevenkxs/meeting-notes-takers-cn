@@ -141,7 +141,11 @@ def flush(label):
     audio = np.concatenate(buf).astype(np.float32)
     if np.abs(audio).max() < 0.01:  # silence, skip
         return
-    text = model.transcribe(audio, language=args.language, fp16=False)["text"].strip()
+    try:
+        text = model.transcribe(audio, language=args.language, fp16=False)["text"].strip()
+    except Exception as e:  # incl. MemoryError: drop this chunk, keep recording
+        print(f"transcribe failed for {label} chunk, skipped: {e!r}")
+        return
     if text:
         line = f"- **{datetime.now():%H:%M:%S}** [{label}] {text}"
         with out.open("a", encoding="utf-8") as f:
