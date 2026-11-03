@@ -2,5 +2,3 @@
 openai-whisper==20250625
 sounddevice==0.5.6
 PyAudioWPatch==0.2.12.9
-# Only needed for the optional turbo clean-up pass (cleanup_turbo.py).
-pywhispercpp==1.5.1

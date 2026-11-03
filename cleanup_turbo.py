@@ -29,7 +29,7 @@ RATE = 16000
 MEETILY = Path(os.environ.get("APPDATA", "")) / "com.meetily.ai" / "models" / "ggml-large-v3-turbo-q5_0.bin"
 
 p = argparse.ArgumentParser()
-p.add_argument("transcript", help="the live transcript, e.g. notes/<name>.md")
+p.add_argument("transcript", help="the live transcript, e.g. notes/2026-10-29_1406.md")
 p.add_argument("--model", default=os.environ.get("TURBO_MODEL") or str(MEETILY))
 p.add_argument("--language", default=None, help="e.g. en, zh; default: the language the recording used, else auto")
 p.add_argument("--threads", type=int, default=8)
