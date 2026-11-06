@@ -1,0 +1,4 @@
+openai-whisper
+python-docx
+boto3
+torch

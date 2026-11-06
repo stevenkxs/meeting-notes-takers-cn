@@ -1,0 +1,810 @@
+I would start to talk down how many people are there in BCP today?
+I'm just looking into it. What's April, June, July 28, 88 people?
+We have 74.5 people in total as after data, and our OP2 is 88.
+Yeah, the actual is...
+Lies down the OP2.
+Okay, next to...
+Sorry, wait. It's the actual. I'm just looking into spreadsheet.
+Everything is estimated. Where is the actual?
+You mean the actual data?
+Yeah, the actual data. Not the estimated. Not the OP2, but the actual.
+The actual is 74.5 RBS, high count in total till this month.
+Okay, where is it mentioned? I'm looking into the group file.
+They had come with file.
+Which tab?
+The high count creep type.
+So the creep type...
+The creep is provided to you previously?
+Yes.
+Okay, let me share.
+First of all...
+Okay.
+You know what? Just so you know that, I think I've got it.
+RBS, high count sheet, I think.
+RBS, head count sheet.
+I mean, I'm looking into S24 point.
+Can you drop the link here?
+Yeah, let me...
+Link and share with you.
+With me one minutes please.
+Okay, I see 74.
+I see 74.5.
+Yeah, no, no, no, I have that.
+Okay, great.
+74.5.
+I don't know if it's the same file, but it has the same number.
+What he just mentioned.
+So what I wanted to ask was, what is that team composition of this?
+If I were to look into this for VCP, how is a team structured?
+Because I understand there are work streams that work on metrics,
+improvements, some on troubleshooting.
+How...
+How have you categorized the team or organized the team?
+Okay.
+Actually, we...
+As you can see in the document, we have maybe 79,
+we have a structure card here.
+And currently, we have...
+What is that?
+I'm sorry.
+Where is the word doc or the quim?
+The doc.
+The doc.
+The transformation proposal doc as shared in the chat box.
+Which page?
+Which page?
+Where is that?
+Page four.
+And the length, 1977.
+Line 97.
+Yeah.
+There is no line 97 on this.
+Am I looking at the right file?
+It's only as 96.
+No worries.
+I can share my screen.
+The share point, find that you have shared.
+I don't see anything after 96.
+97.
+Can you see my screen now?
+Hold on.
+Hold on.
+Let me click on this thing.
+I was looking into what you shared yesterday.
+In the worked out file, it's 95.
+It's kind of a different...
+A little bit different.
+Oh, so this is a different location.
+So, this is a different location.
+So, Sumis shared a link yesterday to provide feedback.
+So, I was looking at that.
+Yes.
+I was looking at...
+Let's talk.
+This is what Sumis shared yesterday.
+And I was looking at this.
+Let me put it in the chat box.
+Okay.
+Let me use the same one.
+No, but that one is not the same one.
+That one does not have what you are sharing.
+Check.
+This is the one I think everyone is open.
+I see five users seeing this talk, which I shared with you.
+The one that you are projecting on screen, only you and one more person is seeing.
+So, clearly, everyone is looking at what I am looking at.
+I know that I have shared two links three and a half before.
+The first event is VCP transformation proposal doc, which I mentioned just now.
+As you can see, let me share my screen.
+It's an overall VCP transformation doc.
+Another event that the progress about the Peter van van der Operation Accidents.
+So, I am looking at what you shared yesterday or day before yesterday.
+Yes.
+I shared these two links.
+So, which one should we...
+The one that you are sharing on screen, nobody on this call has opened that.
+And you can see the users.
+Yes.
+So, which...
+Are you understanding what I am seeing?
+Yes, I understand it.
+What you are seeing.
+Actually, I can't do with you previously.
+You said that you would like to review the whole thing.
+No, no, no.
+I understand now.
+I think I understand now.
+So, we were meant to review what you shared two days back, not this one.
+But since I asked you that question about...
+Yeah, yeah, yeah, yeah.
+...you open, understood, understood.
+Yeah.
+Okay, okay.
+I'm with you.
+Okay.
+So, yeah, please educate me on how is the team organization?
+Yes.
+Actually, as you know, April is managing both AM and VCP part as the STL.
+And April, me currently is managing the whole BSP programs.
+And under me, we have five VC managers who are managing the execution team.
+And also, we have one program team under Ying and also have two program managers.
+So, that's the current VCP organization structure.
+So, which box?
+So, the first box?
+Yes, the first box.
+So, the first box, what are the work streams in this?
+So, you mean the current VCP work streams?
+Yeah.
+That is what we understand.
+Because my understanding is there are teams that focus on...
+There's a team that focuses on metric improvement.
+There's a team that focuses on troubleshooting.
+And that's my understanding is incorrect.
+I would like to understand, is there a team segregation within VCP?
+Currently, the VCP is managing the non-standardized operational work,
+which requested by BS or Wander directly.
+And also, we are managing the input matrix improvement work.
+This is the current work stream with the VCP all.
+So, is there a team segregation on everyone works on everything?
+We have...
+In the do you like to share more information for this question?
+Yeah.
+So, we have...
+So, actually, we get into separated teams.
+Currently, the team are divided by product families.
+Like we have the hard-line teams.
+And we also have a consumer team.
+The vendor consultant team for work for a consumable.
+And we also have the vendor consultant team working for self-tilized in the books.
+So, currently, that is our current model.
+However, in next year, as we know, we will have the transformation.
+So, our plan may be we will have some restructuring.
+Maybe we will...
+But I think it is in discussion.
+It's not finalized yet.
+In a conclusion, but we will separate the rooms.
+Like when you see in the dock, we will have the expert role.
+We will have the L400 consultant execution role.
+Yeah.
+But how we restrict to the team, it is in discussion.
+So, right now, there is no structure.
+It is only characterized by BS.
+Yeah.
+Yes.
+Okay.
+So, for the next year, in terms of the restructuring, this curious why this information is not there in the dock that we are reviewing right now.
+I think actually, we need to align with our PF leaders on our transformation plan at the first step.
+Because, actually, we have reviewed the de-transformation plan with our PFC.
+And we also asked the PFCs to share the dock with their PF leaders and collect their comments.
+I'm really confused.
+I'm really confused because I got an email from Paul yesterday that most of the stuff is aligned.
+So, what is aligned?
+And why do we have two separate documents?
+The document that we are reviewing right now has the full scope of the transformation.
+Or is it only certain scope?
+We have aligned our future models go with the PFCs.
+Actually, maybe many for level six and level five PFCs.
+So, just to understand.
+So, the proposal that we were supposed to review today is only related to the operational excellence of VCP, not the entire VCP.
+The entire VCP.
+But if it is entire VCP, this is where I think, you know, things are broken.
+So, you're saying yesterday, you said that most of it is aligned.
+But I hear a different version right now that none of that or only some is aligned.
+And then the other thing is in the proposal that we are reviewing now, I only see two work streams there, UDE and operational excellence.
+Right, only two, 2.1 and 2.2.
+But then the one that you were showing on the other paper, which you are presenting on the screen, it has gotten more work streams.
+Okay, let me clarify.
+Actually, the proposal is aligned with each PFC in dry.
+And our next step is to align with the RPF leader as well.
+That's the regarding to the PFC.
+And also regarding to the VCP transformation proposal.
+I think I shared two links with you straight up.
+The first one is the VCP transformation proposal as I shared the screen now.
+And another is the PILOV and the operation part.
+Also, for the VCP transformation proposal, I think we already reviewed before maybe in July.
+And you said that this repealer is well structured.
+What is the difference between the third September proposal that you're showing?
+We just updated the progress in the document.
+Okay, just give me one second.
+Is this okay?
+I've put it in the chat box.
+Is this the proposal that we are reviewing right now?
+Let me check.
+No, no, no, it's only the.
+But the first appeal is progress update.
+But you shared with me this link a couple of days back saying this is what we will be reviewing.
+Right?
+I think this is where I'm getting confused.
+If I look into your email on the second of September, you shared a link.
+Right?
+This is the talk that we will review.
+Okay, let me check.
+I think maybe I shared with the incorrect link.
+Let me check.
+Yeah, any check your email that you sent on the second of September?
+A couple of days back.
+I remember I shared a email.
+Let me check if I included the incorrect link.
+Sorry.
+No, no, that's okay.
+I just for maybe maybe I opened the other one or I don't know.
+Or maybe it looks like.
+Let me check.
+Let me check first.
+Actually, we have we also have this link.
+You already in our recipe transformation doc.
+So let me check if I sent the incorrect.
+Well, now that I'm clicking on this, this is taking to because the one that I just opened.
+I don't think that.
+Actually, we have I shared the correct link in the email.
+Actually, your open link is attached in the link itself.
+So I think maybe that's the reason why you are referring the.
+But I don't see.
+For example, I don't see it on this document right now.
+Yes, April already reviewed the.
+No, no, no, I'm not far out.
+This document is not open on her side right now.
+I can see the users.
+I only see three users here on this dog.
+I shared the information with you previously.
+Let me check again.
+In which dog are you reading?
+I am reading the document.
+Should I share it in the tech box?
+Okay.
+The word version.
+Okay.
+Because he's sharing right now.
+So you are looking at the offline version, not the online version.
+Offline version.
+Okay, okay.
+I see.
+Let me open it from the word dog just to kind of.
+Okay.
+Got it.
+Okay.
+So I think without spending more time on which I think we are on the same.
+is I think we are on the same page now.
+I just open it from the email
+because I was looking at something else.
+Vendor operational deficiency,
+key deal operation current.
+Yeah, so how many people, you know,
+so right now we are seeing that everyone is doing everything.
+Yes, currently,
+everybody is doing some of the pillars work
+that the people is strapped turn by pf level.
+Okay.
+So what is, sorry,
+so what is it that we want to discuss this?
+This looks like the same dog that we reviewed before.
+So what is the update on this dog?
+So previously two months,
+we are mainly focused on the first pillar.
+As you can see, the vendor operation excellence,
+which the document you reviewed just now.
+Actually, previously you shared a quip with me
+and the quip listed the vendor central
+or PCX related system issues,
+which is collected from pf or BS team.
+We identify some UD opportunities
+and we are seeking the relevant POCs
+to help us proceed with the next actions.
+So two, just so that I'm understanding countries.
+So out of this big proposal
+that you shared a couple of months back,
+in this meeting, are we only reviewing
+the vendor operational, the OPEX pillar?
+Yes, I would like to start with this pillar first.
+Actually, we have some subparinated this pillar.
+So all the pillars are we supposed to review
+in this meeting, the pillar one?
+I would like to focus on pillar one
+for this review meeting.
+And we can set up a separate meetings
+to review other pillars as well.
+Yeah, sure.
+Even through pillar one.
+So that's your other people, right?
+Yes, yes.
+Shreddap, what is your expectation actually?
+Because I think you mentioned that you want to check the update
+about VCP in our NBR.
+And I think the entire proposal was the biggest one in July.
+And we are piloting the pillar one
+mainly in past two months.
+So that's why I think you may merely want to update that part.
+But I also want to check,
+what is your expectation of this review from your side?
+Is that something you're expecting
+or are you expecting something else?
+No, no, sorry.
+So first of all, I wanted to be on the same page
+with all of you in terms of what you want to review.
+So I think this is where,
+so I came into this meeting with a very open mind.
+I see.
+Right?
+Trying which is to review what you want me to review.
+But I think I was struggling with,
+I think what we want to review in this meeting
+and this way, I think we were going back and forth.
+Because I opened pillar one, which is the separate dog.
+I've already gone through that.
+And then, but then you attach this document,
+which is, and if I see the link,
+is this the upex link proposal third September?
+Is this the,
+but this one is all the pillars.
+So I'd like to share the dog
+and then appreciate it.
+So then, this is where I've lost it.
+Then why is it sharing the old document
+or have we updated pillar one in this or in the old document?
+Yes, we already updated the pillar line in the old document.
+And I also update some, for example,
+the key fundings and progress in the old dog
+as well for other pillars.
+Also, let me clarify why I share the old dog.
+Actually, during our MBR,
+you said you would like to review
+VCP transformation.
+So I just share the old dog.
+For today's meeting, actually, for the pillar one,
+we have some fundings and support needed.
+So if you open man for the review meeting,
+I would like to start our discussion for the pillar one.
+Also, you already spoke to the dog.
+Yeah, please let's do that.
+You know what support you need.
+Actually, for the UDEP part,
+it is very helpful for that.
+You shared the PDF for voice with us
+and through the PDF and BS voice,
+we identified 12 UDEP ideas of Junities.
+Currently, actually, we are only know the problem itself,
+themselves, but we are lacking of some data
+or some dedicated few seats that we are,
+we can work together with them to size the problem
+and we can know the business impact.
+In that case, we can proceed with our UDEP ideas
+and to convince the upstream team
+to do some system level of fix.
+In that case, we can improve our vendor experience.
+Yeah, so what support you need?
+I understand you have identified 12 UDEP opportunities
+across PMS.
+But what support you need is we're trying to understand.
+Let me explain a bit.
+We had a catch up with Roni also about this support needed.
+The main idea, the main purpose is we need some real case
+to validate our investigation
+because from the inputs we received from JCA
+about like maybe coming from surveys
+or vendors compliance, we can know the issues,
+but we need to locate the real case and to give that
+and also validate our guess
+because we assume that probably some data goes to
+but YouTube, we don't have any real data or real case
+so that we can localize the issues.
+So that's why we need some POC from PF teams
+to give us more details in real case
+to support our validation further.
+So that's a main support we need like JCA is how to connect.
+And also last time when we discussed about the role
+or the ask from the POC in PF,
+we also provide like a description
+like some work tasks or jobs we need from POC
+and what the time consumed.
+Maybe a POC should put for the
+for these kind of work streams.
+So we send the email last time to Renee
+and to give them details about how we want to leverage POCs
+in UDI work stream.
+So at this moment, we still waiting for maybe the comeback
+like saying whether we can connect someone's in the PF teams,
+that's the most update.
+Okay.
+Yeah, thanks for that clarification.
+So you said that you're working with Ronit
+to get more clear examples or evidence from PF.
+Yeah, so the pillar one talk is actually
+we review with Ronit two weeks ago, I guess.
+Okay.
+Okay.
+So are you getting, I mean, I'm assuming that
+there is good visibility into when, you know,
+Ronit has come back with when he can turn this around
+et cetera, et cetera.
+Yeah, last time he mentioned he need the like R and R
+or time consume or something for projection from us
+to communicate with PF is if they need to know
+how much time effort they need to put in these works ring.
+We share like our projection saying for a particular case,
+we might need like some hours per month from a POC,
+but we haven't got any update from that.
+Maybe he is communicating with PF and asking for the POC,
+but we're still waiting for their reply.
+Okay, I can, you know, follow up with him
+because he is currently one person doing a lot of stuff here.
+I love it.
+Yes, we all know that.
+So it's easy.
+Yeah.
+Yeah.
+With that, with a POC connection,
+then we can start like the EDE for a further,
+like a loop calls analysis and some solutions build up.
+So that's for EDE is said as at the moment.
+So I understand you also work with, you know, the,
+the PMs, right, the PF PMs directly, you know,
+Shiraisan, Shima Marissa and Moli Shimasan,
+all these people, right?
+Yes, we are working with all the PF PMs.
+That the VCPs, PS, POC,
+you mean that we can seek them for the support as well?
+Yeah, why not?
+I mean, that is a standard channel, right?
+The role of GCI is to unblock,
+but the BAU interactions,
+I think are best done with PS,
+because they are the ones, you know,
+who will give you the use cases, right?
+They are the teams who are running this.
+Ron, I also will need to get this from them
+and then pass those along to you.
+Okay, we will try to connect with each PF's POC
+to see if they know, for example,
+for each programs, which PS or PM raise the concern.
+After that, I'm not sure if you do record,
+you remember that the crib is shared,
+I'm not sure if it's somehow shared by you previously.
+Somehow shared by you previously.
+So I'm not sure if you know who is the owner of this quid.
+This was done by consumables, you know,
+created by consumables, which I had, yeah, yeah.
+Because, yeah, because, yeah,
+because, you know, this thing came out from VX, right?
+And as you know, Ron is the single third leader
+for this project, you know, the transformation project
+on the vendor central.
+So, even he should know, because I had shared this with him.
+So this was, yeah, I think this was set up,
+I don't know, by either Ray Shirai's hand
+or Yamaguchi's hand, one of the two.
+Okay, I will check, again,
+where is Ron needed to see if he know
+who is the PM?
+We can directly connect with the PM as well
+to speed up the whole process
+and to know the problem setting.
+And in this way, we can continue to do with the system
+VX, which can improve the vendor experience.
+Yeah, so my expectation is RBS should work directly
+with P.S. on these P.A.U.
+That is the role of P.F. PMs.
+That is why they are there for, you know, productivity views.
+So one with them, if you had stuck, then you come to me.
+Yeah, okay.
+Okay, the reason why I raised my question here
+is that you, why do the people to me?
+So I just would like to check if you have the alias
+of the quip owner.
+I can tap away them directly.
+Yeah, I mean, these were put together by, you know,
+the initial P.F. quip that table was put together
+by consumables.
+I don't know between the two who put that,
+but yeah, this was put together by consumables.
+Okay, I will try to find the updates records
+in the quip and to connect with the PMs
+to collect the problem setting.
+Yeah, if you need help, then, you know, you'll let me know.
+Because I just do not want, I do not want Ronit's,
+Ronit to be a blocker is not a right word,
+but you know what I mean.
+I don't want you to get stuck
+because Ronit is taking time because he is busy elsewhere.
+Yes, we, we will try to connect with the PM,
+the RAPTIC, and we'll keep you and Ronit's updated
+if we have any progress on this.
+Yeah, yeah, I think that is more personally speaking,
+I find that more effective.
+Yeah, and if you need any, you know, navigation help,
+then yeah, please feel free to reach out to Ronit,
+then Ronit can reach out to P.F.s
+and understand, you know, where the blockers are.
+Okay, okay, sure, and also for these U.D.s,
+do you know what is the dollar impact?
+That's also a deep dive part of our deep dive
+because we need to get the real case
+and then size up to see what the impact probably dollar,
+probably like high-concerned for something else.
+Yeah, I see, I see, okay.
+Yeah, because I think, you know,
+the size of the opportunity from a commercial standpoint,
+I think that is, you know, very important, right?
+Because that is when, I think this will get more sort
+of recognition and visibility.
+Yeah.
+So by when do you plan to do that?
+We will try to connect with the quip owner next Monday
+and to see if the quip owner can share seven real case P.O.C.
+with us and the post of it gets the P.O.C. edders.
+We will work together with them to know what's the size
+of the problem and post that we got the sizing
+and I think we can share, we can have the business impact,
+for example, the OPEX or GMS.
+Yeah, okay, sounds good.
+Okay, also straight up, I would like to check with you,
+actually, with CP transformation,
+we are ongoing with the pallard.
+I would like to check with you.
+For example, I can set up some review meeting
+with you for monthly or bad monthly.
+You know what, I was just thinking, giving it a thought.
+I think a lot of this is very complimentary
+to I think what Ron is just putting together, right?
+For example, your pillar two pillar three will feel
+into the framework that he's putting together.
+So I don't think, you know, we need a separate meeting for this.
+I mean, this is just about the UD because I see,
+I only see UD as a separate part.
+Would you agree, is that?
+Would you agree to that statement?
+So you mean that for UD part,
+we can have some regular meeting to review the progress
+for other pillars you do need to set separate meeting.
+Is my understanding correct?
+Well, that is what is my understanding.
+I'm asking, do you agree with that?
+Oh, actually, or currently the previous two months
+is we only followed about the UD part.
+So I reviewed it with you.
+And actually, as next step,
+we will have some findings or progress on other pillars.
+I would like to check if you provide some time to me
+to review if the, for example, the direction is correct
+and really appreciate your insights for our progress.
+Look, I don't mind reviewing it,
+but my thought was my understanding was
+that the rest of the pillars are getting covered
+under the law and it's new program design.
+If you disagree to that statement,
+then if you have a different view,
+then I'm happy to review the document.
+I don't know the new, was the,
+it's new program, could you please share
+us some information?
+Well, you can connect with Robert for that,
+because it's a very big transformation.
+And just for your information,
+you know, we have 100% PF alignment,
+leadership alignment on what is on this building.
+Right, every PF is aligned.
+And then, Robert, there's a single third leader
+for that project transformation.
+And that's a big deal because, as you know,
+you know, more than 30% of the VX is breaking
+because of vendor central contact us,
+you know, poor workflow and resolution.
+So that is the end-to-end transformation
+that I think he's working on.
+And my understanding is the transformation
+that you originally envisioned as part of this paper
+for VCP is basically connected to his transformation.
+And which is where I said that, you know,
+maybe we don't need to go through this paper
+because I get to, I get,
+I will get the updates from Robert about VCP
+through his transformation.
+Okay, I got the update.
+Other than you being.
+Other than Robert.
+I know.
+Other than you being.
+Okay, okay, I got it.
+I know, you need to introduce me a kind of new program.
+It's premium support.
+So I understand what you are mentioning.
+You are mentioning that, for example,
+the vendor operation acceptance process
+is already covered by runnist programs.
+So we don't need to update with you
+for the process perspective.
+For regarding to you, the part that you would like
+to know the progress, but I.
+Well, a lot of the operational existence,
+well, depends on what you include
+in the operational existence, right?
+My thinking is UDE, well, UDE is also included.
+I think from what I know, from what he's putting.
+So UDE is all already there.
+Now, I will have a chat with him separately
+because he did update me about the ongoing UDE work
+that all of you are doing.
+So I think all of it is kind of included in his model,
+but there I'm confused is he told me
+that from the entire VCP team,
+there are, I don't know, 15 odd people who are dedicated
+only for the vendor central operational support,
+but I understand from you that is not the case.
+Everyone does everything.
+So I think that's the piece that I like to understand.
+You know, okay, the, the, the, the number.
+Ronin share is that post our transformation.
+We will have, for example, 18 people in total
+to support the PIDORVAT as a share that in the,
+in the, in my screen vendor operation part.
+Also, I would like to check with you is that we also have
+GLO operation acceptance and proactive input matrix
+improvement PIDORs.
+So just would like to check with you if you need some update
+for these two PIDORs.
+Yeah, but we have some progress.
+I can set up a review meeting with you as well.
+Yeah, I just want to first get a very good understanding
+of what from this paper is included
+under the transformation that Ronin is putting together.
+And anything that does not belong to that is,
+is, is, is what I would like to, you know, review.
+Yeah. Okay, got you.
+Okay. Yeah. So if you can, so if you,
+so if you can maybe align with Ronin,
+on what? Yes, on this is not included in this transformation.
+Then I think we will be clear.
+Okay. Yeah. Okay.
+So I think I will double confirm with Ronin.
+And I think PIDOR 1 is covered by his program.
+And the PIDOR 2 and PIDOR 3 is not covered by his program.
+So all we may, we may,
+many review these two PIDORs with you in the future.
+Yeah, yeah. And I think, I think you're right.
+That is, that is the same sense that I get.
+Okay. Great.
+I mean, also straight have a, sorry, sorry, sorry to interrupt.
+So just, so on pillar 2 and pillar 3,
+have you discussed these with the PSPMs,
+the ones that you work with? Yes.
+Yes, we already aligned with PF.
+But currently we are reviewing the PF operation work
+with each PF PC.
+And we aim to start the pilot,
+maybe from October.
+Okay. Okay.
+So can we can we talk about some of these timelines?
+So yeah, I'll be happy to understand these better
+in terms of two things.
+What is the level of alignment that you have today with PFs?
+What is the help that you want me to, you know,
+provide or unblock with PFs and three, the timelines?
+These are the, these are the things I'd like to understand.
+What are the milestones?
+Because what you're talking about,
+this is a big band implementation timeline, right?
+This is all the four pillars.
+So that if pillar 2 and pillar 3 is also part
+of what you're showing on screen,
+then that's fine.
+We can, we can reveal that.
+So for example, you're saying September,
+you are aligning with level 7 on the strategic direction.
+So, so is this what is currently going on on pillar 2 and pillar 3?
+Yes, not only on pillar 2 and pillar 3,
+actually for the hope of transformation proposal,
+I would like to allow this PF leader in this month.
+And I would like to seek your support
+to also participate that review meeting
+if at your convenience.
+Yeah, I'll be happy to,
+as I said, I mean, just, just let me know what support you need, right?
+Because, because you work with the PFCs, right?
+On a day-to-day basis.
+So, I mean, we can do it through two ways.
+You know, one is they reach out to their bosses,
+get you the approval, sign off alignments, whatever it is.
+Or we could do it as a separate L7, you know,
+correct meeting, right?
+So, I leave it to your discretion.
+What do you think is a more effective process?
+Okay, next week, I will connect with each PFC as well
+to let them know I will set up a review meeting
+with our leadership.
+And I will seek their recommendation or suggestions.
+Yeah, yeah.
+I mean, the easier thing is since you already work with them
+and they are part of their L7R.
+They can talk to their, you know, their respective org
+and come back to you whether, you know,
+do they are in support?
+Yes.
+So, that way, I mean, you continue,
+you know, you continue the channel of communication.
+But if you get blocked, then obviously,
+I'm happy to jump in.
+Okay.
+Okay, got it.
+Thank you.
+No worries.
+Is it anything else that we wanted to cover?
+Also, another thing is that actually,
+within VCP transformation,
+we also have the input matrix improvement.
+Previously, you shared some VGP related documents
+to add is very, very helpful.
+So, I would like to check with you.
+Is there any POCs in your team
+who are owing VGP part of and we can learn more with them?
+You know, so there has been some change in the strategy
+in terms of the ownership on this.
+I would actually suggest that you should connect
+with Polly on this, right?
+Polly or colleague who manages account management.
+Because as part of the Spark service menu redesign,
+she did speak about including VGP metrics
+as part of the core account management,
+which today, by the way,
+is not clearly articulated in the menu, right?
+So, and she was very clear in terms of which metrics
+under which module, right?
+So, I think fundamentally, it should be the same,
+you know, either signature or Spark, right?
+So, maybe connect with her once, just through.
+Yeah.
+Okay, I'm working very closely with Polly.
+Have you checked with her on the Spark part
+and to see if we can leverage the same methodology
+and the mechanism for signature as well?
+Great.
+Yeah, yeah, sure.
+And look, I mean, if you need, you know,
+still any help to understand the signature side of things,
+then do let me know.
+I mean, just FYG, I know this is VCP,
+this is not account management.
+I had a talk with Rhea today on the signature menu redesign
+and I've shared some thoughts with her.
+So, we are basically working on some kind of,
+to bring out some clarity on the menu redesign.
+And I think obviously we'll keep RBS up to date
+on what we basically come up with.
+So, Rhea and I will work together on that
+because I think there is still some work required
+because I don't think everyone is on the same page.
+So, I've shared some ideas with her today
+and we will put together something,
+not right now, I think perhaps in couple of weeks time.
+And so, if there is anything from a VCP standpoint,
+metric standpoint that you need additional support on
+beyond what you find out from Polly,
+then I can maybe, you know,
+maybe let you know some of those.
+Okay, okay, I will first like work together with Polly
+on this part and if we need your support,
+I will let you know.
+Thank you very much, Rhea, have a full,
+your great support.
+Oh, you're very welcome, thanks to all of you.
+I think for all the hard work that you always do.
+Any, if there isn't anything,
+I don't know if there anybody else has got any point.
+If not, then maybe vegan clothes and happy Friday
+to everyone once again.
+Happy Friday and enjoy your party.
+I don't know, I thought you were the one who missed.
+All right, thank you very much.
+Do you want to drink in your party?
+What is that?
+Drink.
+We drink much.
+Do you drink?
+Oh, it depends on who I am with and who I am.
+I think yeah, it's not always the case,
+but yeah, it depends on the company who I am with
+and where I am.
+Okay, let's come while it is Japan.
+Hope you can drink with me.
+All right, all right, yeah, take care.
+Bye-bye.
+Take care, bye-bye, have a nice weekend.
+Thank you, you too.

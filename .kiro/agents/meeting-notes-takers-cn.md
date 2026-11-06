@@ -15,12 +15,12 @@ Treat these as the same intent, case-insensitive: "start", "start recording", "b
 1. If `notes/.recording` exists, tell the user a recording is already running with its file name. Do nothing else.
    If `notes/.recording` exists but the process id on its line 2 is not running, the last recording crashed. Show the last lines of `notes/.err.txt`, delete `notes/.recording`, `notes/.log.txt` and `notes/.err.txt`, and continue with a new recording.
 2. Build the output path `notes/<yyyy-MM-dd_HHmm>.md`.
-3. Launch the recorder hidden and detached from the workspace root. `--chunk 10` makes captions appear about 10 seconds behind speech. Use `--chunk 30` instead if the user asks for "no captions" or for higher accuracy. Add `--save-audio` only if the user asks to keep the audio:
+3. Launch the recorder hidden and detached from the workspace root. By default each phrase is transcribed when the speaker pauses (max 6 seconds), so captions trail speech by about 3 to 6 seconds. If the user asks for "no captions" or for higher accuracy, add `"--chunk","30","--pause","1.5"` to the arguments for longer phrases. Add `--save-audio` only if the user asks to keep the audio:
 
 ```powershell
 $out = "notes/$(Get-Date -Format 'yyyy-MM-dd_HHmm').md"
 New-Item -ItemType Directory -Force notes | Out-Null
-$p = Start-Process python -ArgumentList "-u","mic_notes.py","--model","base","--chunk","10","--out",$out -WindowStyle Hidden -PassThru -RedirectStandardOutput notes/.log.txt -RedirectStandardError notes/.err.txt
+$p = Start-Process python -ArgumentList "-u","mic_notes.py","--model","base","--out",$out -WindowStyle Hidden -PassThru -RedirectStandardOutput notes/.log.txt -RedirectStandardError notes/.err.txt
 Set-Content notes/.recording "$out`n$($p.Id)"
 ```
 
