@@ -9,8 +9,7 @@ You get a markdown file per meeting with the transcript, then a summary, topics,
 - Windows (speaker capture uses WASAPI loopback; on other systems it records the microphone only, and this is untested)
 - Python 3.14 (the version this was tested on) with `pip`
 - Kiro
-- Internet on first run only, so Whisper can download its speech model (about 140 MB for `base`)
-- Disk space for the Whisper install, which also installs PyTorch (a large download)
+- Internet on first run only, so faster-whisper can download its speech model (about 140 MB for `base`)
 
 ## Install
 
@@ -62,13 +61,14 @@ Useful phrases:
 You can also run the recorder by hand:
 
 ```
-python mic_notes.py --model small --chunk 30 --language zh --out notes/my-meeting.md
+python mic_notes.py --model base --language zh --out notes/my-meeting.md
 ```
 
 | Option | Default | Meaning |
 |--------|---------|---------|
 | `--model` | `base` | `tiny`, `base`, `small`, `medium`. Larger is more accurate and slower |
-| `--chunk` | `30` | Seconds of audio per transcription |
+| `--chunk` | `6` | Maximum seconds of continuous speech per transcription |
+| `--pause` | `0.4` | Seconds of quiet that end a phrase. A phrase is transcribed as soon as it ends |
 | `--language` | auto | Language code. Setting it avoids wrong guesses on quiet moments |
 | `--no-speaker` | off | Record the microphone only |
 | `--out` | `notes/<timestamp>.md` | Output file |
@@ -80,8 +80,8 @@ Stop it with Ctrl+C, or by creating `notes/.stop`.
 - **Use a headset.** With open speakers, the microphone also hears the speakers and lines get duplicated.
 - **Default device only.** Speaker capture uses whichever device is your Windows default output when you start. Switch devices before you start, not during the meeting.
 - **Lines are tagged.** `[Me]` is your microphone. `[Them]` is the speaker output, such as the other side of a call. It does not identify individual speakers.
-- **Captions lag.** They appear about 10 seconds behind speech, because audio is transcribed in chunks.
-- **Accuracy varies.** Mixed languages and technical terms are the weakest area. Use `--language` and the `small` model for better results. A glossary helps with acronyms.
+- **Captions lag a little.** Each phrase is transcribed when the speaker pauses, so captions appear about 3 to 6 seconds after a phrase starts.
+- **Accuracy varies.** Mixed languages and technical terms are the weakest area. Use `--language` for better results. The `small` model is more accurate but takes about 5 seconds per phrase on a typical laptop CPU, too slow for live captions. Use it only when you do not need captions. A glossary helps with acronyms.
 - **Screen sharing.** The caption window is visible if you share your whole screen.
 - **Notes can hold sensitive content.** Do not commit or share the `notes/` folder. The `.gitignore` in this repo excludes it.
 
