@@ -1,4 +1,4 @@
-# Meeting notes team
+# Meeting notes team (Supporting Slack, Zoom and Team)
 
 Three Kiro agents that work as a team on each meeting. One records and shows live captions, one picks up the questions asked and the answers given, and one writes the meeting minutes once recording stops. Transcription runs locally with Whisper, so audio never leaves your machine.
 
