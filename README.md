@@ -9,15 +9,15 @@ You get one markdown file per meeting with the transcript and the minutes (summa
 | Agent | Job | When it works | Writes |
 |-------|-----|---------------|--------|
 | `meeting-recorder-cn` | Records the microphone and speaker. Shows the caption window | You say `start`, or you click **Record** on a call notice | `notes/<date>_<time>.md` (transcript) |
-| `meeting-qa-cn` | Picks up every question and its answer. Shows the "Live Q&A" window | About every minute while recording, then one final pass when recording stops | `notes/<date>_<time>.qa.md` |
+| `meeting-qa-cn` | Picks up every question and its answer. Shows the "Live Q&A" window | Continuously while recording (a pass about every 20 seconds), then one final pass when recording stops | `notes/<date>_<time>.qa.md` |
 | `meeting-minutes-cn` | Writes the minutes. Keeps the acronym glossary | After the Q&A final pass | `## Structured Notes` at the end of the transcript |
 
 The agents never call each other. They share files in the `notes/` folder, and `call_watcher.py` hands the work from one to the next:
 
 1. The recorder writes the transcript and creates `notes/.recording` while it runs.
-2. While `.recording` exists, the watcher runs the Q&A agent about every minute through `kiro-cli` and shows its `.qa.md` in the "Live Q&A" window (right side of the screen).
+2. While `.recording` exists, the watcher runs the Q&A agent through `kiro-cli` again and again, starting a new pass as soon as the last one finishes and the transcript has new lines, and shows its `.qa.md` in the "Live Q&A" window (right side of the screen).
 3. When the recording stops, `.recording` is deleted. The watcher runs the Q&A final pass, then the minutes agent.
-4. A "Meeting minutes ready" notice pops up with an **Open** button. This comes about 2 to 3 minutes after the meeting ends.
+4. A "Meeting minutes ready" notice pops up with an **Open** button. This comes about 1 to 2 minutes after the meeting ends.
 
 Each agent does only its own job. Ask the recorder for minutes and it points you to `meeting-minutes-cn`.
 
@@ -49,6 +49,7 @@ Each agent does only its own job. Ask the recorder for minutes and it points you
    meeting-qa-cn.md
    meeting-minutes-cn.md
    meeting-notes-takers-cn.md   (fallback)
+   meeting-team-runner.json     (lean runner the watcher uses for fast Q&A and minutes passes)
    ```
    The agent files use absolute paths. If your tool folder is somewhere else, change the paths at the top of each file.
 3. In a terminal opened in the tool folder, run:
@@ -86,7 +87,7 @@ After each meeting, the minutes agent adds acronyms it did not recognize to the 
 
 1. Join the call. A "Record this call?" notice appears in the top-right corner.
 2. Tell everyone on the call, then click **Record**. "Not now", closing the notice, or no answer within 2 minutes means that call is not recorded.
-3. The caption window opens. After about a minute, the "Live Q&A" window opens.
+3. The caption window opens. About 20 seconds after the first words, the "Live Q&A" window opens.
 4. Hang up. The recording stops 15 seconds after the call ends. The "Meeting minutes ready" notice follows.
 
 How calls are detected:
@@ -138,7 +139,7 @@ Stop it with Ctrl+C, or by creating `notes/.stop`.
 - **Default device only.** Speaker capture uses whichever device is your Windows default output when recording starts. If the call plays through a different device, the other side is not recorded. Set the device first.
 - **Lines are tagged.** `[Me]` is your microphone. `[Them]` is the speaker output, such as the other side of a call. It does not identify individual speakers.
 - **Captions lag a little.** Each phrase is transcribed when the speaker pauses, so captions appear about 3 to 6 seconds after a phrase starts.
-- **Live Q&A lags more.** Each Q&A pass runs a Kiro agent and takes 40 to 60 seconds, so a question shows up about 1 to 2 minutes after it is asked.
+- **Live Q&A lags more.** Each Q&A pass runs a Kiro agent and takes about 15 to 30 seconds, so a question shows up about 15 to 40 seconds after it is asked. The watcher runs these passes with `meeting-team-runner` (no MCP servers, file tools only) on the older `v1` engine, which starts in seconds. If that fails, it falls back to the default `kiro-cli` setup on its own, at about a minute per pass.
 - **Accuracy varies.** Mixed languages and technical terms are the weakest area. Use `language zh` (or another code) for better results. The `small` model is more accurate but takes about 5 seconds per phrase on a typical laptop CPU, too slow for live captions. A glossary helps with acronyms.
 - **Screen sharing.** The caption, Live Q&A and notice windows are visible if you share your whole screen.
 - **Agent permissions.** The watcher runs the Q&A and minutes agents with file read and write access only, no shell commands. Their file writes are not limited to the `notes/` folder.

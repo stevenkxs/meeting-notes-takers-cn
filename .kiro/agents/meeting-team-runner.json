@@ -1,0 +1,10 @@
+{
+  "name": "meeting-team-runner",
+  "description": "Headless runner for the meeting team (meeting-qa-cn, meeting-minutes-cn). No MCP servers, file tools only, so it starts fast. Used by call_watcher.py.",
+  "prompt": "You run one task for the meeting notes team. The prompt names an agent file; read it and follow it exactly.",
+  "mcpServers": {},
+  "includeMcpJson": false,
+  "tools": ["fs_read", "fs_write"],
+  "allowedTools": ["fs_read", "fs_write"],
+  "resources": []
+}

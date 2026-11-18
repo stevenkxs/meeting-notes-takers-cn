@@ -2,7 +2,7 @@
 1. When Teams, Zoom or Slack is in a call, it asks "Record this call?" and records (the
    meeting-recorder-cn job) only after you click Record. It stops when the call ends.
 2. While any recording runs (started here or by the meeting-recorder-cn agent), it runs the
-   meeting-qa-cn agent every minute and shows its <t>.qa.md in a "Live Q&A" window.
+   meeting-qa-cn agent continuously (back to back) and shows its <t>.qa.md in a "Live Q&A" window.
 3. When the recording stops, it runs meeting-qa-cn's final pass, then meeting-minutes-cn,
    then pops a "Meeting minutes ready" notice.
 Agents run headless through kiro-cli. Usage:  pythonw call_watcher.py  (Task Scheduler starts it at logon)
@@ -23,11 +23,15 @@ NOTES = TOOL / "notes"
 REC, STOP = NOTES / ".recording", NOTES / ".stop"
 AGENTS = Path.home() / ".kiro" / "agents"
 QA_AGENT, MINUTES_AGENT = AGENTS / "meeting-qa-cn.md", AGENTS / "meeting-minutes-cn.md"
-# ponytail: each kiro-cli run takes 40 to 60 s, so at 60 s the live passes run almost back to back
-# and the window trails speech by 1 to 2 minutes. Only one agent runs at a time, so a final pass
-# can wait up to a minute for a live pass to finish. Upgrade path: a faster model for UPDATE.
-QA_EVERY = 60  # seconds between the starts of live Q&A passes
-QA_FIRST = 60  # first live pass this long after recording starts
+# Live passes run back to back: the next starts as soon as one finishes and the transcript has new
+# lines. With the lean runner below a pass takes about 27 s (64 s with the default kiro-cli setup).
+# ponytail: one agent runs at a time, so a final pass can wait up to ~30 s for a live pass to end.
+QA_EVERY = 0  # minimum seconds between the starts of live Q&A passes
+QA_FIRST = 20  # first live pass this long after recording starts
+# Lean runner: an agent with no MCP servers and file tools only, on the older v1 engine. That cuts
+# kiro-cli startup from ~50 s to a few seconds. If a run on it fails, the watcher drops v1, then the
+# runner, and logs it. ponytail: v1 may be removed in a later kiro-cli release; the fallback covers it.
+RUNNER = ["--agent", "meeting-team-runner", "--agent-engine", "v1"]
 APPS = {"teams": "Teams", "zoom": "Zoom", "slack": "Slack"}
 POLL_MS = 3000
 END_GRACE = 15  # seconds the mic must stay free before the call counts as ended (hold, mute toggles)
@@ -128,10 +132,21 @@ def run_agent(agent: Path, task: str, t: Path):
     with (NOTES / ".team.log.txt").open("a", encoding="utf-8") as f:
         f.write(f"\n=== {datetime.now():%Y-%m-%d %H:%M:%S} {agent.stem} {task} {t.name}\n")
         f.flush()
-        p = subprocess.Popen(["kiro-cli", "chat", "--no-interactive", "--trust-tools=fs_read,fs_write,read,write",
-                              prompt], cwd=NOTES, stdout=f, stderr=subprocess.STDOUT, creationflags=NO_WINDOW)
-    log(f"{agent.stem} {task} -> {t.name}")
+        p = subprocess.Popen(["kiro-cli", "chat", "--no-interactive", *RUNNER,
+                              "--trust-tools=fs_read,fs_write,read,write", prompt],
+                             cwd=NOTES, stdout=f, stderr=subprocess.STDOUT, creationflags=NO_WINDOW)
+    log(f"{agent.stem} {task} -> {t.name} ({' '.join(RUNNER) or 'default kiro-cli setup'})")
     return p
+
+
+def runner_failed():
+    """A run on the current runner failed: fall back one step (drop v1, then the lean agent)."""
+    global RUNNER
+    if RUNNER:
+        RUNNER = RUNNER[:2] if "--agent-engine" in RUNNER else []
+        log(f"team: run failed, falling back to {' '.join(RUNNER) or 'default kiro-cli setup'}")
+        return True
+    return False
 
 
 DARK, TEXT, MUTED = "#161D26", "#FFFFFF", "#C0C6CE"
@@ -176,7 +191,12 @@ class Team:
             kind, t, code = self.job_kind, self.job_t, self.job.returncode
             self.job = self.job_kind = None
             log(f"team: {kind} for {t.name} finished (code {code})")
-            if kind == "final":
+            if code != 0 and runner_failed():  # retry the same task on the fallback setup
+                agent, task = {"update": (QA_AGENT, "UPDATE"), "final": (QA_AGENT, "FINAL"),
+                               "minutes": (MINUTES_AGENT, "MINUTES")}[kind]
+                self.job_kind, self.job_t = kind, t
+                self.job = run_agent(agent, task, t)
+            elif kind == "final":
                 self.job_kind, self.job_t = "minutes", t
                 self.job = run_agent(MINUTES_AGENT, "MINUTES", t)
             elif kind == "minutes":
@@ -221,7 +241,7 @@ class Team:
             return
         self.win_t, self.win_mtime = t, mtime
         body = qa.read_text(encoding="utf-8") if qa.exists() else \
-            "Questions and answers asked in this meeting appear here, updated about every minute."
+            "Questions and answers asked in this meeting appear here, updated about every 20 seconds."
         self.box.delete("1.0", "end")
         self.box.insert("1.0", body.replace("**", ""))
 
