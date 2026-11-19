@@ -283,19 +283,20 @@ class Team:
 
     def notify(self, t: Path):
         self.close_window()
-        ok = "## Structured Notes" in t.read_text(encoding="utf-8")
+        minutes = t.with_suffix(".minutes.md")
+        ok = minutes.exists() and minutes.stat().st_mtime >= t.stat().st_mtime
         log(f"team: minutes for {t.name} {'ready' if ok else 'MISSING, see .team.log.txt'}")
         w = tk.Toplevel(self.root, bg=DARK)
         w.title("Meeting minutes")
         w.attributes("-topmost", True)
         w.geometry(f"420x150+{w.winfo_screenwidth() - 440}+40")
-        msg = (f"Meeting minutes ready:\n{t.name}" if ok else
+        msg = (f"Meeting minutes ready:\n{minutes.name}" if ok else
                f"Minutes could not be written for {t.name}.\nAsk meeting-minutes-cn to \"summarize my notes\".")
         tk.Label(w, text=msg, fg=TEXT, bg=DARK, font=("Segoe UI", 12), justify="left").pack(padx=16, pady=(14, 4), anchor="w")
         row = tk.Frame(w, bg=DARK)
         row.pack(pady=12)
         if ok:
-            tk.Button(row, text="Open", width=12, command=lambda: (os.startfile(t), w.destroy())).pack(side="left", padx=6)
+            tk.Button(row, text="Open", width=12, command=lambda: (os.startfile(minutes), w.destroy())).pack(side="left", padx=6)
         tk.Button(row, text="Close", width=12, command=w.destroy).pack(side="left", padx=6)
         w.after(10 * 60 * 1000, lambda: w.winfo_exists() and w.destroy())
 

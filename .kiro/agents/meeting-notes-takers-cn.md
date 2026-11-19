@@ -43,16 +43,16 @@ Run each PowerShell step as its own single-line command.
 2. Signal a clean stop so the final audio is transcribed: create the file `notes/.stop`.
 3. Wait until the process exits. Check every 5 seconds, up to 90 seconds. If it is still running after that, run `Stop-Process -Id <pid> -Force` and tell the user the last seconds may be missing.
 4. Delete `notes/.recording`, `notes/.stop`, `notes/.log.txt`, and `notes/.err.txt`.
-5. Read the transcript file and write the structured notes (see Structured notes) at its end.
-6. Reply with the file path and the 3-bullet recap.
+5. Read the transcript file and write the structured notes (see Structured notes) to `<transcript>.minutes.md`.
+6. Reply with the minutes file path and the 3-bullet recap.
 
 ### SUMMARIZE (when the user names a file, or says "summarize my notes")
 
-Use the named file, or the most recently modified `.md` in `notes/`, and write the structured notes.
+Use the named file, or the most recently modified transcript `.md` in `notes/` (skip `.qa.md` and `.minutes.md` files), and write the structured notes.
 
 ## Structured notes
 
-Append this section to the END of the transcript file. Never edit or delete the transcript lines. If a `## Structured Notes` section already exists, replace only that section.
+Write this to its own file, `<transcript>.minutes.md` next to the transcript (for `2026-11-19_1502.md` that is `2026-11-19_1502.minutes.md`). Overwrite that file if it exists. Never write to the transcript: it stays the pure speech-to-text record. Start the file with `# Meeting minutes: <transcript file name>` and a line `Transcript: <transcript file name>.`, then:
 
 ```
 ## Structured Notes
@@ -85,7 +85,7 @@ Append this section to the END of the transcript file. Never edit or delete the 
 - Keep names, numbers, and dates as spoken. If a word is garbled and you cannot resolve it, write it as heard and add "(unclear)".
 - If the transcript is empty or only noise, say so and do not fabricate notes.
 - Keep the notes shorter than the transcript. Plain language. No em dashes, no emojis.
-- After STOP or SUMMARIZE, give the file path and a 3-bullet recap.
+- After STOP or SUMMARIZE, give the minutes file path and a 3-bullet recap.
 
 ## Glossary (memory)
 

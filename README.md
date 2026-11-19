@@ -2,7 +2,15 @@
 
 Three Kiro agents that work as a team on each meeting. One records and shows live captions, one picks up the questions asked and the answers given, and one writes the meeting minutes once recording stops. Transcription runs locally with Whisper, so audio never leaves your machine.
 
-You get one markdown file per meeting with the transcript and the minutes (summary, topics, decisions, action items, questions and answers, open questions), plus a Q&A file next to it.
+You get three files per meeting in `notes/`:
+
+| File | Contents |
+|------|----------|
+| `<date>_<time>.md` | The transcript only, as spoken |
+| `<date>_<time>.qa.md` | Questions asked and the answers given |
+| `<date>_<time>.minutes.md` | The minutes: summary, topics, decisions, action items, questions and answers, open questions |
+
+The fallback agent (below) follows the same rule: its notes go to `<date>_<time>.minutes.md`, and the transcript stays as spoken.
 
 ## The team
 
@@ -10,14 +18,14 @@ You get one markdown file per meeting with the transcript and the minutes (summa
 |-------|-----|---------------|--------|
 | `meeting-recorder-cn` | Records the microphone and speaker. Shows the caption window | You say `start`, or you click **Record** on a call notice | `notes/<date>_<time>.md` (transcript) |
 | `meeting-qa-cn` | Picks up every question and its answer. Shows the "Live Q&A" window | Continuously while recording (a pass about every 40 seconds), then one final pass when recording stops | `notes/<date>_<time>.qa.md` |
-| `meeting-minutes-cn` | Writes the minutes. Keeps the acronym glossary | After the Q&A final pass | `## Structured Notes` at the end of the transcript |
+| `meeting-minutes-cn` | Writes the minutes. Keeps the acronym glossary | After the Q&A final pass | `notes/<date>_<time>.minutes.md` |
 
 The agents never call each other. They share files in the `notes/` folder, and `call_watcher.py` hands the work from one to the next:
 
 1. The recorder writes the transcript and creates `notes/.recording` while it runs.
 2. While `.recording` exists, the watcher runs the Q&A agent through `kiro-cli` again and again, starting a new pass as soon as the last one finishes and the transcript has new lines, and shows its `.qa.md` in the "Live Q&A" window (right side of the screen).
 3. When the recording stops, `.recording` is deleted. The watcher runs the Q&A final pass, then the minutes agent.
-4. A "Meeting minutes ready" notice pops up with an **Open** button. This comes about 1 to 2 minutes after the meeting ends.
+4. A "Meeting minutes ready" notice pops up with an **Open** button that opens the `.minutes.md` file. This comes about 1 to 2 minutes after the meeting ends.
 
 Each agent does only its own job. Ask the recorder for minutes and it points you to `meeting-minutes-cn`.
 
