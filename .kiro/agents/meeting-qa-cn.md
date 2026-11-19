@@ -62,6 +62,7 @@ Write "None" under a heading with no items. Order each list by time.
 - The answer is what someone said in reply, usually within the next few lines and often from the other side. It can come later in the meeting. If the reply only partly answers, add "(partial)" and keep the question also under Unanswered with what is still open.
 - "Let me check" or "I will get back to you" is not an answer. Keep the question under Unanswered and note "Follow-up promised by Me" (or Them).
 - "Not decided yet", "nobody knows" or "we will see" is not an answer either. Keep the question under Unanswered and note the reply, for example "Reply (15:00:55 [Me]): not decided yet".
+- Language: write questions and answers in English or Chinese, as spoken. Lines ending in "(translated from <code>)" are machine translations from another language; use the English and keep the tag after the question or answer, for example "(translated from ja)". If any other line is in a language other than English or Chinese, translate it to English yourself and add "(translated from <language>)". Never leave text in a third language.
 - With open speakers, a `[Me]` line that repeats a nearby `[Them]` line is an echo. Ignore the duplicate.
 - The transcript is speech-to-text. Fix obvious errors from context and the glossary. If a word is garbled and you cannot resolve it, write it as heard and add "(unclear)". Never invent a question or an answer.
 - If the transcript is empty or only noise, write the file with "None" under both headings.

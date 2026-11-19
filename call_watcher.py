@@ -10,6 +10,7 @@ Logs: notes/.watcher.log.txt (watcher), notes/.team.log.txt (agent runs)
 """
 import ctypes
 import os
+import re
 import subprocess
 import sys
 import time
@@ -18,20 +19,24 @@ import winreg
 from datetime import datetime
 from pathlib import Path
 
+from live_items import extract  # keyword question spotting, shared with the fallback agent
+
 TOOL = Path(__file__).resolve().parent
 NOTES = TOOL / "notes"
 REC, STOP = NOTES / ".recording", NOTES / ".stop"
 AGENTS = Path.home() / ".kiro" / "agents"
 QA_AGENT, MINUTES_AGENT = AGENTS / "meeting-qa-cn.md", AGENTS / "meeting-minutes-cn.md"
 # Live passes run back to back: the next starts as soon as one finishes and the transcript has new
-# lines. With the lean runner below a pass takes about 27 s (64 s with the default kiro-cli setup).
-# ponytail: one agent runs at a time, so a final pass can wait up to ~30 s for a live pass to end.
+# lines. A pass takes about 30 to 60 s with the lean runner below.
+# ponytail: one agent runs at a time, so a final pass can wait for a live pass to end.
 QA_EVERY = 0  # minimum seconds between the starts of live Q&A passes
 QA_FIRST = 20  # first live pass this long after recording starts
-# Lean runner: an agent with no MCP servers and file tools only, on the older v1 engine. That cuts
-# kiro-cli startup from ~50 s to a few seconds. If a run on it fails, the watcher drops v1, then the
-# runner, and logs it. ponytail: v1 may be removed in a later kiro-cli release; the fallback covers it.
-RUNNER = ["--agent", "meeting-team-runner", "--agent-engine", "v1"]
+# A kiro-cli run that has not exited by then is killed, so one hung run cannot block the team.
+JOB_TIMEOUT = {"update": 150, "final": 300, "minutes": 300}
+# Lean runner: an agent with no MCP servers and file tools only, so kiro-cli skips loading the
+# user's MCP servers. (kiro-cli 3.0 removed the faster v1 engine.) If a run on it fails, the
+# watcher falls back to the default kiro-cli setup and logs it.
+RUNNER = ["--agent", "meeting-team-runner"]
 APPS = {"teams": "Teams", "zoom": "Zoom", "slack": "Slack"}
 POLL_MS = 3000
 END_GRACE = 15  # seconds the mic must stay free before the call counts as ended (hold, mute toggles)
@@ -136,20 +141,34 @@ def run_agent(agent: Path, task: str, t: Path):
                               "--trust-tools=fs_read,fs_write,read,write", prompt],
                              cwd=NOTES, stdout=f, stderr=subprocess.STDOUT, creationflags=NO_WINDOW)
     log(f"{agent.stem} {task} -> {t.name} ({' '.join(RUNNER) or 'default kiro-cli setup'})")
-    return p
+    return p, time.time()
 
 
 def runner_failed():
-    """A run on the current runner failed: fall back one step (drop v1, then the lean agent)."""
+    """A run on the lean runner failed: fall back to the default kiro-cli setup."""
     global RUNNER
     if RUNNER:
-        RUNNER = RUNNER[:2] if "--agent-engine" in RUNNER else []
+        RUNNER = []
         log(f"team: run failed, falling back to {' '.join(RUNNER) or 'default kiro-cli setup'}")
         return True
     return False
 
 
 DARK, TEXT, MUTED = "#161D26", "#FFFFFF", "#C0C6CE"
+COVERED = re.compile(r"Covers transcript up to (\d\d:\d\d:\d\d)")
+
+
+def live_qa_text(transcript: str, qa: str) -> str:
+    """Live Q&A window text: the agent's checked Q&A, then keyword-spotted questions from lines the
+    agent has not read yet, so new questions show within seconds instead of after the next pass.
+    ponytail: keyword heuristics from live_items.py, so some misses and some chatter; times are
+    compared as HH:MM:SS, so a meeting that runs past midnight shows old lines as new."""
+    covered = (COVERED.search(qa) or [None, "00:00:00"])[1]
+    pending = [q for q in extract(transcript)[1] if q[:8] > covered]
+    body = qa.replace("**", "") if qa else "Checked questions and answers appear here after the first pass, about a minute in.\n"
+    if pending:
+        body += "\n## Possible questions (spotted just now, not checked yet)\n" + "\n".join(f"? {q}" for q in pending) + "\n"
+    return body
 
 
 class Team:
@@ -162,6 +181,7 @@ class Team:
         self.no_live = False
         self.done = []  # stopped recordings waiting for Q&A final + minutes
         self.job = self.job_kind = self.job_t = None
+        self.job_started = 0.0
         self.last_qa = 0.0
         self.qa_size = -1
         self.win = self.box = None
@@ -187,18 +207,28 @@ class Team:
             log(f"team: {self.live.name} stopped, finishing")
             self.live = None
 
+        timed_out = False
+        if self.job and self.job.poll() is None and now - self.job_started > JOB_TIMEOUT[self.job_kind]:
+            # kiro-cli sometimes finishes its work but never exits (seen 2026-11-19: hung 4 h and
+            # blocked every later pass). Kill it and carry on; the next step checks the files.
+            subprocess.run(["taskkill", "/T", "/F", "/PID", str(self.job.pid)], capture_output=True,
+                           creationflags=NO_WINDOW)
+            self.job.wait()
+            timed_out = True
+            log(f"team: {self.job_kind} for {self.job_t.name} timed out after {JOB_TIMEOUT[self.job_kind]} s, killed")
         if self.job and self.job.poll() is not None:
             kind, t, code = self.job_kind, self.job_t, self.job.returncode
             self.job = self.job_kind = None
-            log(f"team: {kind} for {t.name} finished (code {code})")
-            if code != 0 and runner_failed():  # retry the same task on the fallback setup
+            if not timed_out:
+                log(f"team: {kind} for {t.name} finished (code {code})")
+            if code != 0 and not timed_out and runner_failed():  # retry the same task on the fallback setup
                 agent, task = {"update": (QA_AGENT, "UPDATE"), "final": (QA_AGENT, "FINAL"),
                                "minutes": (MINUTES_AGENT, "MINUTES")}[kind]
                 self.job_kind, self.job_t = kind, t
-                self.job = run_agent(agent, task, t)
+                self.job, self.job_started = run_agent(agent, task, t)
             elif kind == "final":
                 self.job_kind, self.job_t = "minutes", t
-                self.job = run_agent(MINUTES_AGENT, "MINUTES", t)
+                self.job, self.job_started = run_agent(MINUTES_AGENT, "MINUTES", t)
             elif kind == "minutes":
                 self.notify(t)
         if self.job is None:
@@ -206,7 +236,7 @@ class Team:
                 t = self.done.pop(0)
                 if has_speech(t):
                     self.job_kind, self.job_t = "final", t
-                    self.job = run_agent(QA_AGENT, "FINAL", t)
+                    self.job, self.job_started = run_agent(QA_AGENT, "FINAL", t)
                 else:
                     log(f"team: no speech in {t.name}, no Q&A or minutes")
                     self.close_window()
@@ -216,7 +246,7 @@ class Team:
                 if size != self.qa_size and has_speech(self.live):
                     self.qa_size = size
                     self.job_kind, self.job_t = "update", self.live
-                    self.job = run_agent(QA_AGENT, "UPDATE", self.live)
+                    self.job, self.job_started = run_agent(QA_AGENT, "UPDATE", self.live)
         self.show_qa()
 
     # --- Live Q&A window -------------------------------------------------------------------
@@ -234,16 +264,17 @@ class Team:
             self.box = tk.Text(w, fg=TEXT, bg=DARK, font=("Segoe UI", 11), wrap="word", relief="flat", padx=12, pady=10)
             self.box.pack(fill="both", expand=True)
             w.protocol("WM_DELETE_WINDOW", self.close_window)
-            self.win_t, self.win_mtime = None, None
+            self.win_t = self.win_mtime = self.win_size = None
         qa = t.with_suffix(".qa.md")
         mtime = qa.stat().st_mtime if qa.exists() else None
-        if (t, mtime) == (self.win_t, self.win_mtime):
+        size = t.stat().st_size if t.exists() else 0
+        if (t, mtime, size) == (self.win_t, self.win_mtime, self.win_size):
             return
-        self.win_t, self.win_mtime = t, mtime
-        body = qa.read_text(encoding="utf-8") if qa.exists() else \
-            "Questions and answers asked in this meeting appear here, updated about every 20 seconds."
+        self.win_t, self.win_mtime, self.win_size = t, mtime, size
+        qa_text = qa.read_text(encoding="utf-8") if qa.exists() else ""
+        body = live_qa_text(t.read_text(encoding="utf-8") if t.exists() else "", qa_text)
         self.box.delete("1.0", "end")
-        self.box.insert("1.0", body.replace("**", ""))
+        self.box.insert("1.0", body)
 
     def close_window(self):
         if self.win:
